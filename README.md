@@ -3,7 +3,7 @@
 
 [![NPM](https://nodei.co/npm/babel-preset-react.png?downloads=true)](https://www.npmjs.com/package/babel-preset-react)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-babel-preset-react/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-babel-preset-react_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-babel-preset-react/build..beta..travis-ci.org/apidoc.html)
+[![apidoc](https://npmdoc.github.io/node-npmdoc-babel-preset-react/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-babel-preset-react_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-babel-preset-react/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-babel-preset-react/build/screenCapture.npmPackageListing.svg)
 
