@@ -51,7 +51,7 @@
 
         href="https://babeljs.io/"
 
-    >babel-preset-react (v6.23.0)</a>
+    >babel-preset-react (v6.24.1)</a>
 </h1>
 <h4>Babel preset for all React plugins.</h4>
 <div class="apidocSectionDiv"><a
@@ -60,6 +60,33 @@
 ><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.babel-preset-react">module babel-preset-react</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.babel-preset-react.plugins.0">
+            function <span class="apidocSignatureSpan">babel-preset-react.</span>plugins.0
+            <span class="apidocSignatureSpan">(_ref)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.babel-preset-react.plugins.1">
+            function <span class="apidocSignatureSpan">babel-preset-react.</span>plugins.1
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.babel-preset-react.plugins.2">
+            function <span class="apidocSignatureSpan">babel-preset-react.</span>plugins.2
+            <span class="apidocSignatureSpan">(_ref)</span>
+            </a>
+
+        </li>
 
         <li>
 
@@ -112,10 +139,243 @@
 
     </ol></li>
 
+    <li class="apidocModuleLi"><a href="#apidoc.module.babel-preset-react.plugins.0">module babel-preset-react.plugins.0</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.babel-preset-react.plugins.0.0">
+            function <span class="apidocSignatureSpan">babel-preset-react.plugins.</span>0
+            <span class="apidocSignatureSpan">(_ref)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.babel-preset-react.plugins.1">module babel-preset-react.plugins.1</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.babel-preset-react.plugins.1.1">
+            function <span class="apidocSignatureSpan">babel-preset-react.plugins.</span>1
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.babel-preset-react.plugins.2">module babel-preset-react.plugins.2</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.babel-preset-react.plugins.2.2">
+            function <span class="apidocSignatureSpan">babel-preset-react.plugins.</span>2
+            <span class="apidocSignatureSpan">(_ref)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.babel-preset-react" id="apidoc.module.babel-preset-react">module babel-preset-react</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.babel-preset-react.plugins.0" id="apidoc.element.babel-preset-react.plugins.0">
+        function <span class="apidocSignatureSpan">babel-preset-react.</span>plugins.0
+        <span class="apidocSignatureSpan">(_ref)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">plugins.0 = function (_ref) {
+  var t = _ref.types;
+
+  var JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/;
+
+  var visitor = (0, _babelHelperBuilderReactJsx2.default)({
+    pre: function pre(state) {
+      var tagName = state.tagName;
+      var args = state.args;
+      if (t.react.isCompatTag(tagName)) {
+        args.push(t.stringLiteral(tagName));
+      } else {
+        args.push(state.tagExpr);
+      }
+    },
+    post: function post(state, pass) {
+      state.callee = pass.get(&#x22;jsxIdentifier&#x22;)();
+    }
+  });
+
+  visitor.Program = function (path, state) {
+    var file = state.file;
+
+    var id = state.opts.pragma || &#x22;React.createElement&#x22;;
+
+    for (var _iterator = file.ast.comments, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : (0,
+_getIterator3.default)(_iterator);;) {
+      var _ref2;
+
+      if (_isArray) {
+        if (_i &#x3e;= _iterator.length) break;
+        _ref2 = _iterator[_i++];
+      } else {
+        _i = _iterator.next();
+        if (_i.done) break;
+        _ref2 = _i.value;
+      }
+
+      var comment = _ref2;
+
+      var matches = JSX_ANNOTATION_REGEX.exec(comment.value);
+      if (matches) {
+        id = matches[1];
+        if (id === &#x22;React.DOM&#x22;) {
+          throw file.buildCodeFrameError(comment, &#x22;The @jsx React.DOM pragma has been deprecated as of React 0.12&#x22;);
+        } else {
+          break;
+        }
+      }
+    }
+
+    state.set(&#x22;jsxIdentifier&#x22;, function () {
+      return id.split(&#x22;.&#x22;).map(function (name) {
+        return t.identifier(name);
+      }).reduce(function (object, property) {
+        return t.memberExpression(object, property);
+      });
+    });
+  };
+
+  return {
+    inherits: _babelPluginSyntaxJsx2.default,
+    visitor: visitor
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.babel-preset-react.plugins.1" id="apidoc.element.babel-preset-react.plugins.1">
+        function <span class="apidocSignatureSpan">babel-preset-react.</span>plugins.1
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">plugins.1 = function () {
+  return {
+    manipulateOptions: function manipulateOptions(opts, parserOpts) {
+      parserOpts.plugins.push(&#x22;jsx&#x22;);
+    }
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.babel-preset-react.plugins.2" id="apidoc.element.babel-preset-react.plugins.2">
+        function <span class="apidocSignatureSpan">babel-preset-react.</span>plugins.2
+        <span class="apidocSignatureSpan">(_ref)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">plugins.2 = function (_ref) {
+  var t = _ref.types;
+
+  function addDisplayName(id, call) {
+    var props = call.arguments[0].properties;
+    var safe = true;
+
+    for (var i = 0; i &#x3c; props.length; i++) {
+      var prop = props[i];
+      var key = t.toComputedKey(prop);
+      if (t.isLiteral(key, { value: &#x22;displayName&#x22; })) {
+        safe = false;
+        break;
+      }
+    }
+
+    if (safe) {
+      props.unshift(t.objectProperty(t.identifier(&#x22;displayName&#x22;), t.stringLiteral(id)));
+    }
+  }
+
+  var isCreateClassCallExpression = t.buildMatchMemberExpression(&#x22;React.createClass&#x22;);
+
+  function isCreateClass(node) {
+    if (!node || !t.isCallExpression(node)) return false;
+
+    if (!isCreateClassCallExpression(node.callee)) return false;
+
+    var args = node.arguments;
+    if (args.length !== 1) return false;
+
+    var first = args[0];
+    if (!t.isObjectExpression(first)) return false;
+
+    return true;
+  }
+
+  return {
+    visitor: {
+      ExportDefaultDeclaration: function ExportDefaultDeclaration(_ref2, state) {
+        var node = _ref2.node;
+
+        if (isCreateClass(node.declaration)) {
+          var displayName = state.file.opts.basename;
+
+          if (displayName === &#x22;index&#x22;) {
+            displayName = _path2.default.basename(_path2.default.dirname(state.file.opts.filename));
+          }
+
+          addDisplayName(displayName, node.declaration);
+        }
+      },
+      CallExpression: function CallExpression(path) {
+        var node = path.node;
+
+        if (!isCreateClass(node)) return;
+
+        var id = void 0;
+
+        path.find(function (path) {
+          if (path.isAssignmentExpression()) {
+            id = path.node.left;
+          } else if (path.isObjectProperty()) {
+            id = path.node.key;
+          } else if (path.isVariableDeclarator()) {
+            id = path.node.id;
+          } else if (path.isStatement()) {
+            return true;
+          }
+
+          if (id) return true;
+        });
+
+        if (!id) return;
+
+        if (t.isMemberExpression(id)) {
+          id = id.property;
+        }
+
+        if (t.isIdentifier(id)) {
+          addDisplayName(id.name, node);
+        }
+      }
+    }
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
 
@@ -227,6 +487,215 @@ _getIterator3.default)(_iterator);;) {
 
     <h2>
         <a href="#apidoc.element.babel-preset-react.plugins.2" id="apidoc.element.babel-preset-react.plugins.2">
+        function <span class="apidocSignatureSpan">babel-preset-react.plugins.</span>2
+        <span class="apidocSignatureSpan">(_ref)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">2 = function (_ref) {
+  var t = _ref.types;
+
+  function addDisplayName(id, call) {
+    var props = call.arguments[0].properties;
+    var safe = true;
+
+    for (var i = 0; i &#x3c; props.length; i++) {
+      var prop = props[i];
+      var key = t.toComputedKey(prop);
+      if (t.isLiteral(key, { value: &#x22;displayName&#x22; })) {
+        safe = false;
+        break;
+      }
+    }
+
+    if (safe) {
+      props.unshift(t.objectProperty(t.identifier(&#x22;displayName&#x22;), t.stringLiteral(id)));
+    }
+  }
+
+  var isCreateClassCallExpression = t.buildMatchMemberExpression(&#x22;React.createClass&#x22;);
+
+  function isCreateClass(node) {
+    if (!node || !t.isCallExpression(node)) return false;
+
+    if (!isCreateClassCallExpression(node.callee)) return false;
+
+    var args = node.arguments;
+    if (args.length !== 1) return false;
+
+    var first = args[0];
+    if (!t.isObjectExpression(first)) return false;
+
+    return true;
+  }
+
+  return {
+    visitor: {
+      ExportDefaultDeclaration: function ExportDefaultDeclaration(_ref2, state) {
+        var node = _ref2.node;
+
+        if (isCreateClass(node.declaration)) {
+          var displayName = state.file.opts.basename;
+
+          if (displayName === &#x22;index&#x22;) {
+            displayName = _path2.default.basename(_path2.default.dirname(state.file.opts.filename));
+          }
+
+          addDisplayName(displayName, node.declaration);
+        }
+      },
+      CallExpression: function CallExpression(path) {
+        var node = path.node;
+
+        if (!isCreateClass(node)) return;
+
+        var id = void 0;
+
+        path.find(function (path) {
+          if (path.isAssignmentExpression()) {
+            id = path.node.left;
+          } else if (path.isObjectProperty()) {
+            id = path.node.key;
+          } else if (path.isVariableDeclarator()) {
+            id = path.node.id;
+          } else if (path.isStatement()) {
+            return true;
+          }
+
+          if (id) return true;
+        });
+
+        if (!id) return;
+
+        if (t.isMemberExpression(id)) {
+          id = id.property;
+        }
+
+        if (t.isIdentifier(id)) {
+          addDisplayName(id.name, node);
+        }
+      }
+    }
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.babel-preset-react.plugins.0" id="apidoc.module.babel-preset-react.plugins.0">module babel-preset-react.plugins.0</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.babel-preset-react.plugins.0.0" id="apidoc.element.babel-preset-react.plugins.0.0">
+        function <span class="apidocSignatureSpan">babel-preset-react.plugins.</span>0
+        <span class="apidocSignatureSpan">(_ref)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">0 = function (_ref) {
+  var t = _ref.types;
+
+  var JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/;
+
+  var visitor = (0, _babelHelperBuilderReactJsx2.default)({
+    pre: function pre(state) {
+      var tagName = state.tagName;
+      var args = state.args;
+      if (t.react.isCompatTag(tagName)) {
+        args.push(t.stringLiteral(tagName));
+      } else {
+        args.push(state.tagExpr);
+      }
+    },
+    post: function post(state, pass) {
+      state.callee = pass.get(&#x22;jsxIdentifier&#x22;)();
+    }
+  });
+
+  visitor.Program = function (path, state) {
+    var file = state.file;
+
+    var id = state.opts.pragma || &#x22;React.createElement&#x22;;
+
+    for (var _iterator = file.ast.comments, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : (0,
+_getIterator3.default)(_iterator);;) {
+      var _ref2;
+
+      if (_isArray) {
+        if (_i &#x3e;= _iterator.length) break;
+        _ref2 = _iterator[_i++];
+      } else {
+        _i = _iterator.next();
+        if (_i.done) break;
+        _ref2 = _i.value;
+      }
+
+      var comment = _ref2;
+
+      var matches = JSX_ANNOTATION_REGEX.exec(comment.value);
+      if (matches) {
+        id = matches[1];
+        if (id === &#x22;React.DOM&#x22;) {
+          throw file.buildCodeFrameError(comment, &#x22;The @jsx React.DOM pragma has been deprecated as of React 0.12&#x22;);
+        } else {
+          break;
+        }
+      }
+    }
+
+    state.set(&#x22;jsxIdentifier&#x22;, function () {
+      return id.split(&#x22;.&#x22;).map(function (name) {
+        return t.identifier(name);
+      }).reduce(function (object, property) {
+        return t.memberExpression(object, property);
+      });
+    });
+  };
+
+  return {
+    inherits: _babelPluginSyntaxJsx2.default,
+    visitor: visitor
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.babel-preset-react.plugins.1" id="apidoc.module.babel-preset-react.plugins.1">module babel-preset-react.plugins.1</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.babel-preset-react.plugins.1.1" id="apidoc.element.babel-preset-react.plugins.1.1">
+        function <span class="apidocSignatureSpan">babel-preset-react.plugins.</span>1
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">1 = function () {
+  return {
+    manipulateOptions: function manipulateOptions(opts, parserOpts) {
+      parserOpts.plugins.push(&#x22;jsx&#x22;);
+    }
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.babel-preset-react.plugins.2" id="apidoc.module.babel-preset-react.plugins.2">module babel-preset-react.plugins.2</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.babel-preset-react.plugins.2.2" id="apidoc.element.babel-preset-react.plugins.2.2">
         function <span class="apidocSignatureSpan">babel-preset-react.plugins.</span>2
         <span class="apidocSignatureSpan">(_ref)</span>
         </a>

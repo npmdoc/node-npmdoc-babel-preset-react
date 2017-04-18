@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://babeljs.io/"
-
-    >babel-preset-react (v6.24.1)</a>
+    <a href="https://babeljs.io/">babel-preset-react (v6.24.1)</a>
 </h1>
 <h4>Babel preset for all React plugins.</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.babel-preset-react">module babel-preset-react</a><ol>
 
@@ -207,21 +200,21 @@
       }
     },
     post: function post(state, pass) {
-      state.callee = pass.get(&#x22;jsxIdentifier&#x22;)();
+      state.callee = pass.get("jsxIdentifier")();
     }
   });
 
   visitor.Program = function (path, state) {
     var file = state.file;
 
-    var id = state.opts.pragma || &#x22;React.createElement&#x22;;
+    var id = state.opts.pragma || "React.createElement";
 
     for (var _iterator = file.ast.comments, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : (0,
 _getIterator3.default)(_iterator);;) {
       var _ref2;
 
       if (_isArray) {
-        if (_i &#x3e;= _iterator.length) break;
+        if (_i &gt;= _iterator.length) break;
         _ref2 = _iterator[_i++];
       } else {
         _i = _iterator.next();
@@ -234,16 +227,16 @@ _getIterator3.default)(_iterator);;) {
       var matches = JSX_ANNOTATION_REGEX.exec(comment.value);
       if (matches) {
         id = matches[1];
-        if (id === &#x22;React.DOM&#x22;) {
-          throw file.buildCodeFrameError(comment, &#x22;The @jsx React.DOM pragma has been deprecated as of React 0.12&#x22;);
+        if (id === "React.DOM") {
+          throw file.buildCodeFrameError(comment, "The @jsx React.DOM pragma has been deprecated as of React 0.12");
         } else {
           break;
         }
       }
     }
 
-    state.set(&#x22;jsxIdentifier&#x22;, function () {
-      return id.split(&#x22;.&#x22;).map(function (name) {
+    state.set("jsxIdentifier", function () {
+      return id.split(".").map(function (name) {
         return t.identifier(name);
       }).reduce(function (object, property) {
         return t.memberExpression(object, property);
@@ -271,7 +264,7 @@ _getIterator3.default)(_iterator);;) {
     <li>description and source-code<pre class="apidocCodePre">plugins.1 = function () {
   return {
     manipulateOptions: function manipulateOptions(opts, parserOpts) {
-      parserOpts.plugins.push(&#x22;jsx&#x22;);
+      parserOpts.plugins.push("jsx");
     }
   };
 }</pre></li>
@@ -294,21 +287,21 @@ _getIterator3.default)(_iterator);;) {
     var props = call.arguments[0].properties;
     var safe = true;
 
-    for (var i = 0; i &#x3c; props.length; i++) {
+    for (var i = 0; i &lt; props.length; i++) {
       var prop = props[i];
       var key = t.toComputedKey(prop);
-      if (t.isLiteral(key, { value: &#x22;displayName&#x22; })) {
+      if (t.isLiteral(key, { value: "displayName" })) {
         safe = false;
         break;
       }
     }
 
     if (safe) {
-      props.unshift(t.objectProperty(t.identifier(&#x22;displayName&#x22;), t.stringLiteral(id)));
+      props.unshift(t.objectProperty(t.identifier("displayName"), t.stringLiteral(id)));
     }
   }
 
-  var isCreateClassCallExpression = t.buildMatchMemberExpression(&#x22;React.createClass&#x22;);
+  var isCreateClassCallExpression = t.buildMatchMemberExpression("React.createClass");
 
   function isCreateClass(node) {
     if (!node || !t.isCallExpression(node)) return false;
@@ -332,7 +325,7 @@ _getIterator3.default)(_iterator);;) {
         if (isCreateClass(node.declaration)) {
           var displayName = state.file.opts.basename;
 
-          if (displayName === &#x22;index&#x22;) {
+          if (displayName === "index") {
             displayName = _path2.default.basename(_path2.default.dirname(state.file.opts.filename));
           }
 
@@ -412,21 +405,21 @@ _getIterator3.default)(_iterator);;) {
       }
     },
     post: function post(state, pass) {
-      state.callee = pass.get(&#x22;jsxIdentifier&#x22;)();
+      state.callee = pass.get("jsxIdentifier")();
     }
   });
 
   visitor.Program = function (path, state) {
     var file = state.file;
 
-    var id = state.opts.pragma || &#x22;React.createElement&#x22;;
+    var id = state.opts.pragma || "React.createElement";
 
     for (var _iterator = file.ast.comments, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : (0,
 _getIterator3.default)(_iterator);;) {
       var _ref2;
 
       if (_isArray) {
-        if (_i &#x3e;= _iterator.length) break;
+        if (_i &gt;= _iterator.length) break;
         _ref2 = _iterator[_i++];
       } else {
         _i = _iterator.next();
@@ -439,16 +432,16 @@ _getIterator3.default)(_iterator);;) {
       var matches = JSX_ANNOTATION_REGEX.exec(comment.value);
       if (matches) {
         id = matches[1];
-        if (id === &#x22;React.DOM&#x22;) {
-          throw file.buildCodeFrameError(comment, &#x22;The @jsx React.DOM pragma has been deprecated as of React 0.12&#x22;);
+        if (id === "React.DOM") {
+          throw file.buildCodeFrameError(comment, "The @jsx React.DOM pragma has been deprecated as of React 0.12");
         } else {
           break;
         }
       }
     }
 
-    state.set(&#x22;jsxIdentifier&#x22;, function () {
-      return id.split(&#x22;.&#x22;).map(function (name) {
+    state.set("jsxIdentifier", function () {
+      return id.split(".").map(function (name) {
         return t.identifier(name);
       }).reduce(function (object, property) {
         return t.memberExpression(object, property);
@@ -476,7 +469,7 @@ _getIterator3.default)(_iterator);;) {
     <li>description and source-code<pre class="apidocCodePre">1 = function () {
   return {
     manipulateOptions: function manipulateOptions(opts, parserOpts) {
-      parserOpts.plugins.push(&#x22;jsx&#x22;);
+      parserOpts.plugins.push("jsx");
     }
   };
 }</pre></li>
@@ -499,21 +492,21 @@ _getIterator3.default)(_iterator);;) {
     var props = call.arguments[0].properties;
     var safe = true;
 
-    for (var i = 0; i &#x3c; props.length; i++) {
+    for (var i = 0; i &lt; props.length; i++) {
       var prop = props[i];
       var key = t.toComputedKey(prop);
-      if (t.isLiteral(key, { value: &#x22;displayName&#x22; })) {
+      if (t.isLiteral(key, { value: "displayName" })) {
         safe = false;
         break;
       }
     }
 
     if (safe) {
-      props.unshift(t.objectProperty(t.identifier(&#x22;displayName&#x22;), t.stringLiteral(id)));
+      props.unshift(t.objectProperty(t.identifier("displayName"), t.stringLiteral(id)));
     }
   }
 
-  var isCreateClassCallExpression = t.buildMatchMemberExpression(&#x22;React.createClass&#x22;);
+  var isCreateClassCallExpression = t.buildMatchMemberExpression("React.createClass");
 
   function isCreateClass(node) {
     if (!node || !t.isCallExpression(node)) return false;
@@ -537,7 +530,7 @@ _getIterator3.default)(_iterator);;) {
         if (isCreateClass(node.declaration)) {
           var displayName = state.file.opts.basename;
 
-          if (displayName === &#x22;index&#x22;) {
+          if (displayName === "index") {
             displayName = _path2.default.basename(_path2.default.dirname(state.file.opts.filename));
           }
 
@@ -611,21 +604,21 @@ _getIterator3.default)(_iterator);;) {
       }
     },
     post: function post(state, pass) {
-      state.callee = pass.get(&#x22;jsxIdentifier&#x22;)();
+      state.callee = pass.get("jsxIdentifier")();
     }
   });
 
   visitor.Program = function (path, state) {
     var file = state.file;
 
-    var id = state.opts.pragma || &#x22;React.createElement&#x22;;
+    var id = state.opts.pragma || "React.createElement";
 
     for (var _iterator = file.ast.comments, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : (0,
 _getIterator3.default)(_iterator);;) {
       var _ref2;
 
       if (_isArray) {
-        if (_i &#x3e;= _iterator.length) break;
+        if (_i &gt;= _iterator.length) break;
         _ref2 = _iterator[_i++];
       } else {
         _i = _iterator.next();
@@ -638,16 +631,16 @@ _getIterator3.default)(_iterator);;) {
       var matches = JSX_ANNOTATION_REGEX.exec(comment.value);
       if (matches) {
         id = matches[1];
-        if (id === &#x22;React.DOM&#x22;) {
-          throw file.buildCodeFrameError(comment, &#x22;The @jsx React.DOM pragma has been deprecated as of React 0.12&#x22;);
+        if (id === "React.DOM") {
+          throw file.buildCodeFrameError(comment, "The @jsx React.DOM pragma has been deprecated as of React 0.12");
         } else {
           break;
         }
       }
     }
 
-    state.set(&#x22;jsxIdentifier&#x22;, function () {
-      return id.split(&#x22;.&#x22;).map(function (name) {
+    state.set("jsxIdentifier", function () {
+      return id.split(".").map(function (name) {
         return t.identifier(name);
       }).reduce(function (object, property) {
         return t.memberExpression(object, property);
@@ -680,7 +673,7 @@ _getIterator3.default)(_iterator);;) {
     <li>description and source-code<pre class="apidocCodePre">1 = function () {
   return {
     manipulateOptions: function manipulateOptions(opts, parserOpts) {
-      parserOpts.plugins.push(&#x22;jsx&#x22;);
+      parserOpts.plugins.push("jsx");
     }
   };
 }</pre></li>
@@ -708,21 +701,21 @@ _getIterator3.default)(_iterator);;) {
     var props = call.arguments[0].properties;
     var safe = true;
 
-    for (var i = 0; i &#x3c; props.length; i++) {
+    for (var i = 0; i &lt; props.length; i++) {
       var prop = props[i];
       var key = t.toComputedKey(prop);
-      if (t.isLiteral(key, { value: &#x22;displayName&#x22; })) {
+      if (t.isLiteral(key, { value: "displayName" })) {
         safe = false;
         break;
       }
     }
 
     if (safe) {
-      props.unshift(t.objectProperty(t.identifier(&#x22;displayName&#x22;), t.stringLiteral(id)));
+      props.unshift(t.objectProperty(t.identifier("displayName"), t.stringLiteral(id)));
     }
   }
 
-  var isCreateClassCallExpression = t.buildMatchMemberExpression(&#x22;React.createClass&#x22;);
+  var isCreateClassCallExpression = t.buildMatchMemberExpression("React.createClass");
 
   function isCreateClass(node) {
     if (!node || !t.isCallExpression(node)) return false;
@@ -746,7 +739,7 @@ _getIterator3.default)(_iterator);;) {
         if (isCreateClass(node.declaration)) {
           var displayName = state.file.opts.basename;
 
-          if (displayName === &#x22;index&#x22;) {
+          if (displayName === "index") {
             displayName = _path2.default.basename(_path2.default.dirname(state.file.opts.filename));
           }
 
@@ -799,3 +792,4 @@ _getIterator3.default)(_iterator);;) {
     ]
 </div>
 </div>
+</body></html>
