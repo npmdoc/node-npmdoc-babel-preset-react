@@ -1,6 +1,6 @@
 # npmdoc-babel-preset-react
 
-#### api documentation for  [babel-preset-react (v6.24.1)](https://babeljs.io/)  [![npm package](https://img.shields.io/npm/v/npmdoc-babel-preset-react.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-babel-preset-react) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-babel-preset-react.svg)](https://travis-ci.org/npmdoc/node-npmdoc-babel-preset-react)
+#### basic api documentation for  [babel-preset-react (v6.24.1)](https://babeljs.io/)  [![npm package](https://img.shields.io/npm/v/npmdoc-babel-preset-react.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-babel-preset-react) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-babel-preset-react.svg)](https://travis-ci.org/npmdoc/node-npmdoc-babel-preset-react)
 
 #### Babel preset for all React plugins.
 
@@ -69,7 +69,8 @@
         "url": "https://github.com/babel/babel/tree/master/packages/babel-preset-react"
     },
     "scripts": {},
-    "version": "6.24.1"
+    "version": "6.24.1",
+    "bin": {}
 }
 ```
 
